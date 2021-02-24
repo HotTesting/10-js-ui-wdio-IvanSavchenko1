@@ -1,0 +1,29 @@
+{
+  "name": "10-js-ui-wdio-ivansavchenko1",
+  "version": "1.0.0",
+  "description": "Demo project for 10-js-ui-wdio students ",
+  "scripts": {
+    "test": "wdio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StartITProtractorJS/10-js-ui-wdio-IvanSavchenko1.git"
+  },
+  "author": "Ivan Savchenko <ivan.savchenko@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StartITProtractorJS/10-js-ui-wdio-IvanSavchenko1/issues"
+  },
+  "homepage": "https://github.com/StartITProtractorJS/10-js-ui-wdio-IvanSavchenko1#readme",
+  "dependencies": {
+    "@wdio/cli": "^7.0.7"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.0.7",
+    "@wdio/mocha-framework": "^7.0.7",
+    "@wdio/spec-reporter": "^7.0.7",
+    "@wdio/sync": "^7.0.7",
+    "chromedriver": "^88.0.0",
+    "wdio-chromedriver-service": "^7.0.0"
+  }
+}
