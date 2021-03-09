@@ -39,7 +39,6 @@ describe('Product return', function () {
 
     expect(content.$('h1')).toHaveText('Product Returns', {wait: 2000, interval: 200})
 
-    browser.pause(1000)
     })
 })
 
@@ -78,8 +77,6 @@ describe("Gift Certificate", function() {
     expect(content.$('h1')).toHaveText('Purchase a Gift Certificate', {wait:2000, interval:200})
     expect(content.$('p')).toHaveTextContaining('gift certificate recipient')
 
-
-    browser.pause(1000)
     });
 })
 
@@ -107,7 +104,6 @@ describe("Contact us form", function() {
 
     expect(content.$('h1')).toHaveText('Contact Us', {wait: 2000, interval: 200})
 
-    browser.pause(1000)
     })
 })
 
@@ -130,7 +126,6 @@ describe("Items search", function() {
 
     expect($$('.product-layout h4')).toHaveTextContaining('Mac',)
 
-    browser.pause(1000)
 });
 
 
@@ -139,11 +134,12 @@ describe("Items search", function() {
     const itemSearch=$('[name="search"]')
     itemSearch.setValue('Nokia3310')
 
-    const searchButton=$('div[id="search"] .input-group-btn [type="button"]')
+    const searchButton = $('div[id="search"] .input-group-btn [type="button"]')
     searchButton.click()
     expect(content.$('h2')).toHaveText('Products meeting the search criteria', {wait:2000, interval:200})
-    expect(content.$ ('p:nth-of-type(2)')).toHaveText('There is no product that matches the search criteria.', {wait:2000, interval:200});
+    const noResultsMsg = $('p=There is no product that matches the search criteria.')
+    expect(noResultsMsg).toBeDisplayed()
+        //expect(content.$ ('p:nth-of-type(2)')).toHaveText('There is no product that matches the search criteria.', {wait:2000, interval:200});
 
-    browser.pause(1000)
     });
 })
