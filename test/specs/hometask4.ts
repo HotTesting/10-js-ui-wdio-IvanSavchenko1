@@ -1,24 +1,24 @@
-let items = [
+const items = [
     {title:'iPod Classic'},
     {title:'iPod Nano'},
     {title:'iPod Shuffle'},
     {title:'iPod Touch'}
 ]
 
-let user = {
+const user = {
     email: 'wishtest@gmail.com',
     password: 'wishtest@gmail.com'
 
 }
-beforeEach(function() {
-    browser.deleteAllCookies();
+afterEach(function() {
+    browser.deleteCookies()
 });
 
-let wishlist = function(item){
+const wishlist = function(item){
     const content = $('#content')
     console.log(`Test for ${item.title}`)
     browser.url('/mp3-players');
-    let itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
+    const itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
     itemPage.click();
     browser.pause(1000)
 
@@ -36,18 +36,18 @@ let wishlist = function(item){
     expect($('h2')).toHaveText('My Wish List',{wait:2000, interval:200})
     expect($('.table-responsive .text-left :nth-of-type(1)')).toHaveText(`${item.title}`)
 
-    const removeButton = $('[class = "btn btn-danger"]')
+    const removeButton = $('.btn.btn-danger')
     removeButton.click()
     browser.pause(1000)
     expect(content.$('p')).toHaveText('Your wish list is empty.',{wait:2000, interval:200})
 }
 
 
-let addingToCart = function(item){
+const addingToCart = function(item){
     console.log(`Test for ${item.title}`)
     browser.url('/mp3-players');
     const content = $('#content')
-    let itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
+    const itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
     itemPage.click();
     browser.pause(1000)
 
@@ -69,17 +69,17 @@ let addingToCart = function(item){
 
     expect(content.$('h1')).toHaveTextContaining('Shopping Cart',{wait:2000, interval:200})
 
-    const removeButton = content.$('[class="btn btn-danger"]')
+    const removeButton = content.$('.btn.btn-danger')
     removeButton.click()
     browser.pause(1000)
     expect(content.$('p')).toHaveText('Your shopping cart is empty!',{wait:2000, interval:200})
 }
 
-let comparisonFunction = function (item) {
+const comparisonFunction = function (item) {
     console.log(`Test for ${item.title}`)
     browser.url('/mp3-players');
     const content = $('#content')
-    let itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
+    const itemPage = content.$( `.product-thumb [alt="${item.title}"]`);
     itemPage.click();
     browser.pause(1000)
 
@@ -95,7 +95,7 @@ let comparisonFunction = function (item) {
     browser.pause(1000)
 
 
-    expect($('#product-compare h1')).toHaveText('Product Comparison')
+    expect($('#product-compare h1')).toHaveText('Product ComparisonPage')
     expect($('tr>td>a')).toHaveText(`${item.title}`)
 
     const removeButton = $('a=Remove')
@@ -105,7 +105,7 @@ let comparisonFunction = function (item) {
     expect($('#content p')).toHaveText('You have not chosen any products to compare.',{wait:2000, interval:200})
 }
 
-let login = function () {
+const login = function () {
     browser.url('/');
     const myAccount =$('[title="My Account"]')
     myAccount.click()

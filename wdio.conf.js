@@ -17,7 +17,9 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //todo change TC selection
     specs: [
-        './test/specs/**/hometask4.ts'
+        //'./test/specs/**/hometask4.ts'
+        //'./test/specs/**/checkout.spec.ts'
+        './test/specs/**/hometask6.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -90,7 +92,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://ip-6147.proline.net.ua:10082',
+    baseUrl: 'http://93.126.97.71:10082',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -199,8 +201,9 @@ exports.config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+     beforeTest: function (test, context) {
+         browser.url('/')
+      },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
