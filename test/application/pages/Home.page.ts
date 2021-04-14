@@ -20,7 +20,6 @@ export class HomePage {
         const viewCart = $('a[href$="cart"]')
         expect(viewCart).toBeVisible()
         viewCart.click()
+        expect ($('#content h1')).toHaveTextContaining('Shopping Cart',{wait:2000, interval:200})
     }
-
-
 }

@@ -14,4 +14,11 @@ export class TopLinks {
         expect(loginButton).toBeVisible({message:'Expected Login button to be visible'})
         loginButton.click()
     }
+
+    logout(){
+        const logoutButton = this.root.$('a=Logout')
+        expect(logoutButton).toBeVisible({message:'Expected Logout button to be visible'})
+        logoutButton.click()
+        expect ($('h1=Account Logout')).toBeVisible({message:'Expected Logout Screen to be visible'})
+    }
 }

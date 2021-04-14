@@ -35,6 +35,7 @@ export class CheckoutPage {
 
     open() {
         browser.url('/index.php?route=checkout/checkout')
+        expect($('#content h1')).toHaveTextContaining('Checkout',{wait:2000, interval:200})
     }
 
 }

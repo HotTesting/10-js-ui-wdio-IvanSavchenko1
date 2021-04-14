@@ -23,7 +23,6 @@ const comparisonFunction = function (){
     expect(iPodShuffle).toBeDefined()
     iPodShuffle.compareThisProduct()
     app.home.alertMessages.openComparison()
-    expect ($('#content h1')).toHaveTextContaining('Product Comparison',{wait:2000, interval:200})
     app.comparison.removeFromComparison()
     browser.waitUntil(()=> app.comparison.isEmpty(),{
         timeoutMsg: "Expected Comparison Page is empty"
@@ -37,7 +36,6 @@ const addToCart = function () {
     expect(iPodShuffle).toBeDefined()
     iPodShuffle.addToCart()
     app.home.openCart()
-    expect ($('#content h1')).toHaveTextContaining('Shopping Cart',{wait:2000, interval:500})
     app.shoppingCart.removeFromCart()
     browser.waitUntil(() => app.shoppingCart.isEmpty(), {
         timeoutMsg: "Expected Shopping cart is empty"
@@ -45,12 +43,17 @@ const addToCart = function () {
 }
 
 const login = function () {
-    browser.url('/')
     const app = new App()
     app.home.topLinks.myAccount()
     app.home.topLinks.login()
     app.loginPage.returnCustomerLogin()
 }
+const logout = function (){
+    const app = new App()
+    app.home.topLinks.myAccount()
+    app.home.topLinks.logout()
+}
+
 
 const addToWishlist = function () {
     const app = new App()
@@ -74,9 +77,7 @@ const purchaseItemSameDelievery = function(){
     expect(iPodShuffle).toBeDefined()
     iPodShuffle.addToCart()
     app.home.openCart()
-    expect ($('#content h1')).toHaveTextContaining('Shopping Cart',{wait:2000, interval:200})
     app.checkout.open()
-    expect($('#content h1')).toHaveTextContaining('Checkout',{wait:2000, interval:200})
     app.checkout.checkoutOptions.selectGuestCheckout()
     app.checkout.checkoutOptions.continue()
     browser.waitUntil(() => app.checkout.billingDetails.isInputReady(), {
@@ -116,9 +117,7 @@ const purchaseItemDiffDelievery = function () {
     expect(iPodShuffle).toBeDefined()
     iPodShuffle.addToCart()
     app.home.openCart()
-    expect($('#content h1')).toHaveTextContaining('Shopping Cart', {wait: 2000, interval: 200})
     app.checkout.open()
-    expect($('#content h1')).toHaveTextContaining('Checkout', {wait: 2000, interval: 200})
     app.checkout.checkoutOptions.selectGuestCheckout()
     app.checkout.checkoutOptions.continue()
     browser.waitUntil(() => app.checkout.billingDetails.isInputReady(), {
@@ -172,10 +171,7 @@ const purchaseByRegisteredUser = function() {
     expect(iPodShuffle).toBeDefined()
     iPodShuffle.addToCart()
     app.home.openCart()
-    expect($('#content h1')).toHaveTextContaining('Shopping Cart', {wait: 2000, interval: 200})
     app.checkout.open()
-    expect($('#content h1')).toHaveTextContaining('Checkout', {wait: 2000, interval: 200})
-
     //expect (app.checkout.billingDetails.isAreaExpanded())
     browser.pause(1000) //Couldn`t find a workaround yet
 
@@ -196,6 +192,9 @@ const purchaseByRegisteredUser = function() {
 
 
 describe ('Guest user', function (){
+    beforeEach(function () {
+        browser.url('/')
+    })
     it(`iPodShuffle can be added to cart by guest user`, function() {
         addToCart()
     })
@@ -215,6 +214,9 @@ describe('Registered user', function () {
         login()
         }
     )
+    afterEach(function (){
+        logout()
+    })
     it(`Item be selected for comparison by registered user`, function () {
         comparisonFunction()
     })
