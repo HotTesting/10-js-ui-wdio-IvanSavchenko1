@@ -21,6 +21,13 @@ export class DeliveryDetailsComponent {
         this.root.$('#input-shipping-zone').selectByVisibleText(data.region)
     }
 
+    fillDelieveryCountryRegion(country: string, region: string) {
+        this.root.$('#input-shipping-country').selectByVisibleText(country)
+        browser.pause(500)
+        //expect($( this.root.$('#input-payment-zone'))).toBeClickable()
+        this.root.$('#input-shipping-zone').selectByVisibleText(region)
+    }
+
     isInputReady(): boolean {
         return this.root.$('#input-shipping-firstname').isDisplayed()
     }

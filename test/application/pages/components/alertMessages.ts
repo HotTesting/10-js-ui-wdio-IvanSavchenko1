@@ -14,4 +14,10 @@ export class AlertMessages {
         expect(openWishlist).toBeVisible({ message: 'Expected Wish list in alert to be visible' })
         openWishlist.click()
     }
+    openShopCart(){
+        const shopCartAlert = this.root.$('a=shopping cart')
+        expect(shopCartAlert).toBeVisible({ message: 'Expected Shopping cart in alert to be visible' })
+        shopCartAlert.click()
+        expect($('#checkout-cart h1')).toHaveTextContaining('Shopping Cart')
+    }
 }

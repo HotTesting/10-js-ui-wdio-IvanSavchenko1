@@ -34,8 +34,8 @@ const addToCart = function () {
     app.home.openAllForCategory('MP3 Players')
     const iPodShuffle = app.productCategory.products.find(product => product.title() === 'iPod Shuffle')
     expect(iPodShuffle).toBeDefined()
-    iPodShuffle.addToCart()
-    app.home.openCart()
+    iPodShuffle.addToCart('iPod Shuffle')
+    app.home.openCart('iPod Shuffle')
     app.shoppingCart.removeFromCart()
     browser.waitUntil(() => app.shoppingCart.isEmpty(), {
         timeoutMsg: "Expected Shopping cart is empty"
@@ -75,8 +75,8 @@ const purchaseItemSameDelievery = function(){
 
     const iPodShuffle = app.productCategory.products.find(product => product.title() === 'iPod Shuffle')
     expect(iPodShuffle).toBeDefined()
-    iPodShuffle.addToCart()
-    app.home.openCart()
+    iPodShuffle.addToCart('iPod Shuffle')
+    app.home.openCart('iPod Shuffle')
     app.checkout.open()
     app.checkout.checkoutOptions.selectGuestCheckout()
     app.checkout.checkoutOptions.continue()
@@ -112,11 +112,10 @@ const purchaseItemSameDelievery = function(){
 const purchaseItemDiffDelievery = function () {
     const app = new App()
     app.home.openAllForCategory('MP3 Players')
-
     const iPodShuffle = app.productCategory.products.find(product => product.title() === 'iPod Shuffle')
     expect(iPodShuffle).toBeDefined()
-    iPodShuffle.addToCart()
-    app.home.openCart()
+    iPodShuffle.addToCart('iPod Shuffle')
+    app.home.openCart('iPod Shuffle')
     app.checkout.open()
     app.checkout.checkoutOptions.selectGuestCheckout()
     app.checkout.checkoutOptions.continue()
@@ -133,7 +132,7 @@ const purchaseItemDiffDelievery = function () {
         city: 'test',
         postCode: '123123',
         country: 'Ukraine',
-        region: 'Kyiv'
+        region: 'Crimea'
     })
 
     if (app.checkout.billingDetails.isCheckboxSelected() == true) {
@@ -169,15 +168,13 @@ const purchaseByRegisteredUser = function() {
 
     const iPodShuffle = app.productCategory.products.find(product => product.title() === 'iPod Shuffle')
     expect(iPodShuffle).toBeDefined()
-    iPodShuffle.addToCart()
-    app.home.openCart()
+    iPodShuffle.addToCart('iPod Shuffle')
+    app.home.openCart('iPod Shuffle')
     app.checkout.open()
     //expect (app.checkout.billingDetails.isAreaExpanded())
     browser.pause(1000) //Couldn`t find a workaround yet
 
     app.checkout.billingDetails.continue()
-
-
     app.checkout.deliveryDetails.continue()
     app.checkout.deliveryMethod.continue()
     app.checkout.paymentMethod.acceptTermsAndConditions()
@@ -199,7 +196,7 @@ describe ('Guest user', function (){
         addToCart()
     })
     it(`Item be selected for comparison by guest`, function () {
-       comparisonFunction()
+        comparisonFunction()
     })
     it('can be purchased with same delivery address', function() {
         purchaseItemSameDelievery()
@@ -233,3 +230,5 @@ describe('Registered user', function () {
         purchaseByRegisteredUser()
     })
 })
+
+

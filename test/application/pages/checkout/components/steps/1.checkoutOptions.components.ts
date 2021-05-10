@@ -18,4 +18,13 @@ export class CheckoutOptionsComponent {
             message: 'Expected Continue button to be visible'})
         continueButton.click()
     }
+
+    login(){
+        const loginButton = this.root.$('#button-login')
+        expect(loginButton).toBeClickable({
+            message: 'Expect Login button to be visible', interval: 500
+            })
+        loginButton.click()
+        expect($('.panel-body #button-payment-address')).toBeVisible()
+    }
 }

@@ -16,14 +16,15 @@
   },
   "homepage": "https://github.com/StartITProtractorJS/10-js-ui-wdio-IvanSavchenko1#readme",
   "dependencies": {
-    "@wdio/cli": "^7.0.7"
+    "@wdio/cli": "^7.0.7",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@wdio/local-runner": "^7.1.0",
     "@wdio/mocha-framework": "^7.0.7",
     "@wdio/spec-reporter": "^7.0.7",
     "@wdio/sync": "^7.1.0",
-    "chromedriver": "^88.0.0",
+    "chromedriver": "^89.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3",
     "wdio-chromedriver-service": "^7.0.0"

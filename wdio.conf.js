@@ -19,7 +19,8 @@ exports.config = {
     specs: [
         //'./test/specs/**/hometask4.ts'
         //'./test/specs/**/checkout.spec.ts'
-        './test/specs/**/hometask6.ts'
+        './test/specs/**/hometask8.ts'
+        //'./test/specs/**/executeJS.ts'
     ],
     // Patterns to exclude.
     exclude: [

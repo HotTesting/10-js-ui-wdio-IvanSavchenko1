@@ -24,7 +24,15 @@ export class BilingDetailsComponent {
         this.root.$('#input-payment-city').setValue(data.city)
         this.root.$('#input-payment-postcode').setValue(data.postCode)
         this.root.$('#input-payment-country').selectByVisibleText(data.country)
+        browser.pause(1000)
         this.root.$('#input-payment-zone').selectByVisibleText(data.region)
+    }
+
+    fillCountryRegion(country: string, region: string) {
+        this.root.$('#input-payment-country').selectByVisibleText(country)
+        browser.pause(500)
+        //expect($( this.root.$('#input-payment-zone'))).toBeClickable()
+        this.root.$('#input-payment-zone').selectByVisibleText(region)
     }
 
     isInputReady(): boolean {
@@ -60,8 +68,9 @@ export class BilingDetailsComponent {
     continue() {
         const continueButton = this.root.$('input[type="button"][value="Continue"]')
         expect(continueButton).toBeClickable({message: 'Expected Continue button to be visible'})
+        browser.pause(800)
         continueButton.click()
-    }
 
+    }
 
 }
